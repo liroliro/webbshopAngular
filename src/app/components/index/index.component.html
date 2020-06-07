@@ -1,0 +1,25 @@
+<div class="container index">
+  <h2 class="index__heading">Welcome to flix!</h2>
+  <p class="index__text">
+    Your number one source of buying and watching movies!
+  </p>
+
+  <br />
+
+  <!-- <div class="index__movies" *ngFor="let m of movies">
+    <p class="index__product-name">{{ m.name }}</p>
+    <img
+      src="{{ m.imageUrl }}"
+      class="index__product"
+      alt=""
+      (click)="goToProduct(m)"
+    />
+  </div> -->
+</div>
+<div class="scrollingIndex index--blur">
+  <div class="index__movies" *ngFor="let m of movies">
+    <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
+  </div>
+</div>
+
+<button (click)="sortMovies()">balle</button>

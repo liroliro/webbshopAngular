@@ -1,0 +1,34 @@
+<p>checkout works!</p>
+
+<form [formGroup]="customer" (ngSubmit)="save()">
+  <p>
+    <label for="firstname">Förnamn</label>
+    <input type="text" id="firstname" formControlName="firstName" />
+  </p>
+  <p>
+    <label for="lastname">Efternamn</label>
+    <input type="text" id="lastname" formControlName="lastName" />
+  </p>
+
+  <div formGroupName="address">
+    <p>
+      <label for="street">Gata</label>
+      <input type="text" id="street" formControlName="street" />
+    </p>
+    <p>
+      <label for="zip">Postkod</label>
+      <input type="text" id="zip" formControlName="zip" />
+    </p>
+    <p>
+      <label for="city">Postort</label>
+      <input type="text" id="city" formControlName="city" />
+    </p>
+  </div>
+  <label for="paymentMethod">Betalningsmetod</label>
+  <input type="text" id="paymentMethod" formControlName="paymentMethod" />
+  <p>Värde: {{ customer.value | json }}</p>
+
+  <p>Validering: {{ customer.valid }}</p>
+
+  <button type="submit" [disabled]="!customer.valid">Spara</button>
+</form>

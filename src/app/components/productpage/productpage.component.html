@@ -1,0 +1,17 @@
+<div class="container">
+  <div *ngFor="let movie of movies">
+    <div class="movie__title">
+      <p>
+        {{ movie.name }}
+      </p>
+    </div>
+    <br />
+    <div class="movie movie__image">
+      <img src="{{ movie.imageUrl }}" (click)="goToProduct(movie)" alt="" />
+    </div>
+
+    <button class="movie movie__button" (click)="addToCart(movie)">Köp</button>
+
+    <hr class="light" />
+  </div>
+</div>

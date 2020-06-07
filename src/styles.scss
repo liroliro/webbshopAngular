@@ -1,1 +1,162 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-header-primary: #99b898;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  background-color: #e4e4e4;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  width: 100%;
+}
+
+.index {
+  &__heading {
+    font-size: 2rem;
+    grid-column: span 3;
+  }
+
+  &__movies {
+    img {
+      transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &--blur {
+    &:hover div:not(:hover) {
+      filter: blur(6px);
+      transition: 1s;
+    }
+  }
+
+  &__product {
+    grid-column: span 1;
+    object-fit: cover;
+    height: 350px;
+    width: 300px;
+    justify-items: center;
+  }
+
+  &__text {
+    grid-column-start: 2;
+  }
+}
+
+.header {
+  background: var(--color-header-primary);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 5%;
+  width: 100%;
+  &__heading {
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+  }
+
+  &__item {
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: var(--color-header-primary);
+    text-transform: uppercase;
+    transition: 0.5s;
+    padding: 16px 32px;
+    margin: 4px 2px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: white;
+      color: var(--color-header-primary);
+    }
+  }
+}
+
+.light {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.movie {
+  &__button {
+    display: inline-block;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 800;
+
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: white;
+      color: var(--color-header-primary);
+    }
+  }
+
+  &__image {
+    text-align: center;
+    img {
+      object-fit: cover;
+      height: 300px;
+      width: 400px;
+    }
+  }
+
+  &__title {
+    font-size: 1.1em;
+  }
+}
+
+.product {
+  &__image {
+    grid-column-start: 1;
+    grid-column: span 1;
+  }
+
+  &__text {
+    grid-column-start: 2;
+    grid-column: span 2;
+  }
+}
+
+.scrollingIndex {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+  div {
+    display: inline;
+  }
+  img {
+    height: 400px;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  }
+}

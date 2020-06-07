@@ -1,0 +1,9 @@
+<div *ngIf="gotMovie" class="container product">
+  <div class="product__text">
+    <p>{{ currentMovie.name }}</p>
+    <p>{{ currentMovie.description }}</p>
+  </div>
+  <img class="product__image" src="{{ currentMovie.imageUrl }}" alt="" />
+
+  <button (click)="addToCart(currentMovie)">Lägg till i varukorgen!</button>
+</div>
