@@ -9,7 +9,8 @@ import { Subject } from 'rxjs';
 })
 export class HttpService {
   theCategories = new Subject();
-  todaysDate;
+  theOrders = new Subject();
+  todaysDate: string;
 
   constructor(private http: HttpClient, datePipe: DatePipe) {
     this.todaysDate = datePipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss');
@@ -18,12 +19,13 @@ export class HttpService {
   sendOrder(order: Order) {
     const url =
       'https://medieinstitutet-wie-products.azurewebsites.net/api/orders';
+
     this.http
       .post<Order>(url, {
         companyId: order.companyId,
         created: this.todaysDate,
-        createdBy: order.firstName + ' ' + order.lastName,
-        orderRows: [],
+        createdBy: `${order.firstName} ${order.lastName}`,
+        orderRows: order.products,
         paymentMethod: order.paymentMethod,
         totalPrice: order.totalPrice,
       })
@@ -32,8 +34,7 @@ export class HttpService {
       });
   }
 
-  getCategories(): void {
-    console.log('hej bajs');
+  getCategories() {
     this.http
       .get(
         'https://medieinstitutet-wie-products.azurewebsites.net/api/categories'
@@ -43,9 +44,17 @@ export class HttpService {
       });
   }
 
-  // updateOrder() {}
+  getOrders() {
+    const url = `https://medieinstitutet-wie-products.azurewebsites.net/api/orders`;
+    this.http.get(url).subscribe((data) => {
+      this.theOrders.next(data);
+    });
+  }
 
-  // deleteOrder(id: number)  {
-  //   const url = `https://medieinstitutet-wie-products.azurewebsites.net/api/orders'/${id}`;
-  // }
+  deleteOrder(id: number) {
+    const url = `https://medieinstitutet-wie-products.azurewebsites.net/api/orders/${id}`;
+    this.http.delete(url).subscribe((data) => {
+      console.log(data);
+    });
+  }
 }

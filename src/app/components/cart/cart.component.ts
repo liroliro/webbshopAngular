@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   calcTotalPrice() {
     let calcPrice = 0;
     this.cart.forEach((e) => {
-      calcPrice += e.quantity * e.price;
+      calcPrice += e.amount * e.price;
     });
     this.totalPrice = calcPrice;
   }
@@ -34,11 +34,11 @@ export class CartComponent implements OnInit {
 
   decreaseInCart(m: Movie) {
     const foundItem = this.cart.find((movie) => movie.id == m.id);
-    foundItem.quantity--;
+    foundItem.amount--;
 
-    if (foundItem.quantity == 0) {
+    if (foundItem.amount == 0) {
       const filteredItems = this.cart.filter((m) => {
-        if (m.quantity >= 1) {
+        if (m.amount >= 1) {
           return m;
         }
       });
@@ -50,7 +50,7 @@ export class CartComponent implements OnInit {
 
   increaseInCart(m: Movie) {
     const foundItem = this.cart.find((movie) => movie.id == m.id);
-    foundItem.quantity++;
+    foundItem.amount++;
 
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.calcTotalPrice();

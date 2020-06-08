@@ -12,6 +12,11 @@ import { HttpService } from 'src/app/services/http.service';
 export class IndexComponent implements OnInit {
   movies: Movie[] = [];
   categories;
+  movieControl = false;
+  actionMovies: Movie[];
+  thrillerMovies: Movie[];
+  comedyMovies: Movie[];
+  sciFiMovies: Movie[];
 
   constructor(
     private service: DataService,
@@ -21,52 +26,74 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpService.theCategories.subscribe((category) => {
-      console.log(category);
       this.categories = category;
     });
     this.httpService.getCategories();
 
     this.service.theMovies.subscribe((moviesFromApi) => {
       this.movies = moviesFromApi;
+      this.sortMovies();
     });
     this.service.getMovies();
   }
 
-  goToProduct(movie) {
+  goToProduct(movie: Movie) {
     this.route.navigate(['/products', movie.id]);
   }
 
   sortMovies() {
-    console.log(this.movies);
-    // console.log(this.movies[0].productCategory[0].categoryId);
-    let hej = this.movies.filter((m) => {
-      let a;
+    this.movieControl = true;
+
+    this.actionMovies = this.movies.filter((m) => {
       for (let i = 0; i < m.productCategory.length; i++) {
-        a = m.productCategory[i].categoryId;
-
+        const a = m.productCategory[i].categoryId;
         if (a == this.categories[0].id) {
-          console.log('ACTION');
-        }
-
-        if (a == this.categories[1].id) {
-          console.log('THRILLER');
-        }
-
-        if (a == this.categories[2].id) {
-          console.log('COMEDY');
-        }
-        if (a == this.categories[3].id) {
-          console.log('SCI-FI');
+          return m;
+        } else {
+          return;
         }
       }
-
-      if (a == undefined) {
-        return;
-      } else {
-        // console.log(a);
-      }
-      // return m;
     });
-    // console.log(hej);
+
+    // console.log(this.actionMovies);
+
+    this.thrillerMovies = this.movies.filter((m) => {
+      for (let i = 0; i < m.productCategory.length; i++) {
+        const a = m.productCategory[i].categoryId;
+        if (a == this.categories[1].id) {
+          return m;
+        } else {
+          return;
+        }
+      }
+    });
+
+    // console.log(this.thrillerMovies);
+
+    this.comedyMovies = this.movies.filter((m) => {
+      for (let i = 0; i < m.productCategory.length; i++) {
+        const a = m.productCategory[i].categoryId;
+        if (a == this.categories[2].id) {
+          return m;
+        } else {
+          return;
+        }
+      }
+    });
+
+    // console.log(this.comedyMovies);
+
+    this.sciFiMovies = this.movies.filter((m) => {
+      for (let i = 0; i < m.productCategory.length; i++) {
+        const a = m.productCategory[i].categoryId;
+        if (a == this.categories[3].id) {
+          return m;
+        } else {
+          return;
+        }
+      }
+    });
+
+    // console.log(this.sciFiMovies);
   }
 }

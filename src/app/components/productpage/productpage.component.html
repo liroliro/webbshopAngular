@@ -1,17 +1,23 @@
-<div class="container">
+<app-header></app-header>
+
+<div class="product--grid">
   <div *ngFor="let movie of movies">
-    <div class="movie__title">
-      <p>
-        {{ movie.name }}
-      </p>
-    </div>
-    <br />
-    <div class="movie movie__image">
-      <img src="{{ movie.imageUrl }}" (click)="goToProduct(movie)" alt="" />
-    </div>
+    <div>
+      <div class="movie__title">
+        <p>
+          {{ movie.name }}
+        </p>
+      </div>
+      <br />
+      <div class="movie movie__image">
+        <img src="{{ movie.imageUrl }}" (click)="goToProduct(movie)" alt="" />
+      </div>
 
-    <button class="movie movie__button" (click)="addToCart(movie)">Köp</button>
+      <button class="movie movie__button" (click)="addToCart(movie)">
+        Köp
+      </button>
 
-    <hr class="light" />
+      <hr class="light" />
+    </div>
   </div>
 </div>

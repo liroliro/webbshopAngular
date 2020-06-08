@@ -1,1 +1,5 @@
-<p>admin works!</p>
+<app-header></app-header>
+<div *ngFor="let order of orders">
+  <p>{{ order | json }}</p>
+  <button (click)="removeOrder(order.id)">TA BORT</button>
+</div>

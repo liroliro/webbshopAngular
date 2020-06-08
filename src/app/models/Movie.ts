@@ -11,5 +11,5 @@ export class Movie {
       category: null;
     }
   ];
-  quantity: number = 1;
+  amount: number;
 }

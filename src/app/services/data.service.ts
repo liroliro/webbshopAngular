@@ -21,7 +21,7 @@ export class DataService implements IMovieService {
       )
       .subscribe((data: Movie[]) => {
         data.map((m) => {
-          m.quantity = 1;
+          m.amount = 1;
         });
         this.theMovies.next(data);
       });
@@ -34,7 +34,7 @@ export class DataService implements IMovieService {
           id
       )
       .subscribe((data: any) => {
-        data.quantity = 1;
+        data.amount = 1;
         this.theMovie.next(data);
       });
   }

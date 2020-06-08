@@ -22,10 +22,10 @@ export class ProductpageComponent implements OnInit {
     this.service.getMovies();
   }
 
-  addToCart(m) {
-    const foundItem = this.cart.find((movie) => movie.id == m.id);
+  addToCart(m: Movie) {
+    const foundItem = this.cart.find((movie) => movie.id === m.id);
     if (foundItem) {
-      m.quantity++;
+      m.amount++;
       window.alert('Movie already exists, quantity++');
     } else {
       this.service.addToCart(m);
@@ -35,7 +35,7 @@ export class ProductpageComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
-  goToProduct(movie) {
+  goToProduct(movie: Movie) {
     this.route.navigate(['/products', movie.id]);
   }
 }

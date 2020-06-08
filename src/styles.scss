@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --color-header-primary: #99b898;
+  --color-header-primary: rgb(229, 229, 229);
+  --color-header-secondary: rgb(20, 20, 20);
 }
 * {
   margin: 0;
@@ -8,35 +9,41 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
-  background-color: #e4e4e4;
-  display: grid;
-  justify-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 100%;
-  width: 100%;
+// .container {
+//   background-color: #e4e4e4;
+//   display: grid;
+//   justify-items: center;
+//   grid-template-columns: 1fr 1fr 1fr;
+//   width: 100%;
+// }
+
+.container--index {
+  background-color: var(--color-header-secondary);
+  color: var(--color-header-primary);
 }
 
 .index {
-  &__heading {
-    font-size: 2rem;
-    grid-column: span 3;
-  }
-
   &__movies {
+    &-heading {
+      font-size: 2.2rem;
+      text-align: right;
+      margin: 15px;
+      text-shadow: 6px 6px 0px rgba(146, 137, 137, 0.178);
+    }
+
     img {
       transition: transform 0.5s ease;
     }
 
     &:hover img {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
   }
 
   &--blur {
     &:hover div:not(:hover) {
-      filter: blur(6px);
-      transition: 1s;
+      filter: blur(1px);
+      transition: 0.7s;
     }
   }
 
@@ -48,38 +55,61 @@
     justify-items: center;
   }
 
+  &__rule {
+    border: 0;
+    height: 1px;
+    background: rgb(19, 16, 11);
+    background: linear-gradient(
+      90deg,
+      rgba(19, 16, 11, 1) 5%,
+      rgba(255, 226, 226, 1) 23%,
+      rgba(224, 184, 144, 1) 47%,
+      rgba(255, 213, 154, 1) 70%,
+      rgba(0, 0, 0, 1) 94%
+    );
+    margin-bottom: 5%;
+    margin-top: 3%;
+  }
+
   &__text {
     grid-column-start: 2;
   }
 }
 
 .header {
-  background: var(--color-header-primary);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 5%;
   width: 100%;
   &__heading {
-    font-size: 2rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
+    font-size: 50px;
+    padding: 20px 50px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #e0dfdc;
+    letter-spacing: 0.15em;
+    text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c,
+      0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424,
+      0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c,
+      0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414,
+      0 15px 0 #121212, 0 22px 30px rgba(0, 0, 0, 0.9);
   }
 
   &__item {
     border: none;
+    background: var(--color-header-secondary);
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: var(--color-header-primary);
     text-transform: uppercase;
     transition: 0.5s;
     padding: 16px 32px;
     margin: 4px 2px;
+    color: var(--color-header-primary);
+    transition: 0.2s;
 
     &:hover {
+      transform: scale(1.1);
       cursor: pointer;
-      background-color: white;
-      color: var(--color-header-primary);
     }
   }
 }
@@ -99,24 +129,9 @@
 
 .movie {
   &__button {
+    @extend .header__item;
     display: inline-block;
     width: 100%;
-    text-transform: uppercase;
-    font-weight: 800;
-
-    background-color: #ddd;
-    border: none;
-    color: black;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition: 0.5s;
-
-    &:hover {
-      background-color: white;
-      color: var(--color-header-primary);
-    }
   }
 
   &__image {
@@ -129,7 +144,11 @@
   }
 
   &__title {
-    font-size: 1.1em;
+    text-align: center;
+    // font-size: 1.1em;
+    font-size: 1.8rem;
+    margin: 15px;
+    text-shadow: 6px 6px 0px rgba(146, 137, 137, 0.178);
   }
 }
 
@@ -143,17 +162,23 @@
     grid-column-start: 2;
     grid-column: span 2;
   }
+
+  &--grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .scrollingIndex {
-  background-color: #333;
+  // overflow: hidden;
   overflow: auto;
   white-space: nowrap;
+  width: auto;
   div {
     display: inline;
   }
   img {
-    height: 400px;
+    height: 250px;
     color: white;
     text-align: center;
     padding: 14px;

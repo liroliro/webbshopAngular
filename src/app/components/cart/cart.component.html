@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div *ngIf="cart.length < 1">
   <p>Du har inte lagt till några filmer i din varukorg!</p>
 </div>
@@ -5,7 +7,7 @@
 <div *ngFor="let movie of cart">
   <p>{{ movie.name }}</p>
   <img src="{{ movie.imageUrl }}" alt="" />
-  <p>{{ movie.quantity }}</p>
+  <p>{{ movie.amount }}</p>
   <div *ngFor="let i of movie.productCategory">
     <p>{{ i.categoryId }}</p>
   </div>

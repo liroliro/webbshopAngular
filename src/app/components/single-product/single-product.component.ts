@@ -12,7 +12,7 @@ export class SingleProductComponent implements OnInit {
   id: number;
   movies: Movie;
   currentMovie: Movie;
-  gotMovie: boolean = false;
+  gotMovie = false;
 
   cart: Movie[] = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -32,9 +32,9 @@ export class SingleProductComponent implements OnInit {
   }
 
   addToCart(m: Movie) {
-    const foundItem = this.cart.find((movie) => movie.id == m.id);
+    const foundItem = this.cart.find((movie) => movie.id === m.id);
     if (foundItem) {
-      m.quantity++;
+      m.amount++;
       window.alert('Movie already exists, quantity++');
     } else {
       this.service.addToCart(m);
