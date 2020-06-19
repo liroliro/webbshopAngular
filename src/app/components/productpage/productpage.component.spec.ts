@@ -1,10 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductpageComponent } from './productpage.component';
-import { DataService } from 'src/app/services/data.service';
-import { MockDataService } from 'src/app/services/MockDataService';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpService } from 'src/app/services/http.service';
+import { MockHttpService } from 'src/app/services/MockHttpService';
+import { DatePipe } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
 
 describe('ProductpageComponent', () => {
   let component: ProductpageComponent;
@@ -12,11 +14,12 @@ describe('ProductpageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductpageComponent],
-      imports: [HttpClientModule],
+      declarations: [ProductpageComponent, HeaderComponent],
+      imports: [HttpClientModule, RouterTestingModule],
       providers: [
+        DatePipe,
         ProductpageComponent,
-        { provide: DataService, useClass: MockDataService },
+        { provide: HttpService, useClass: MockHttpService },
       ],
     }).compileComponents();
   }));
@@ -34,5 +37,13 @@ describe('ProductpageComponent', () => {
   it('should get movies', () => {
     expect(component.movies.length).toBeGreaterThan(0);
     expect(component.movies[0].name).toContain('Star');
+  });
+
+  it('should add three movies to cart', () => {
+    component.movies.forEach((m) => {
+      component.addToCart(m);
+    });
+
+    expect(component.cart.length).toEqual(3);
   });
 });

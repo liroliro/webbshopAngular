@@ -1,0 +1,76 @@
+<div *ngIf="movieControl">
+  <p class="index__movies-heading">Action movies</p>
+  <div *ngIf="actionLogic">
+    <span (click)="scrollLeftAction()" class="index__left-button">
+      <i class="fas fa-caret-left"></i>
+    </span>
+  </div>
+  <div>
+    <span (click)="scrollRightAction()" class="index__right-button">
+      <i class="fas fa-caret-right"></i>
+    </span>
+  </div>
+  <div class="scrollingIndex index--blur" #actionContent>
+    <div class="index__movies" *ngFor="let m of actionMovies">
+      <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
+    </div>
+  </div>
+</div>
+
+<hr class="index__rule" />
+<div *ngIf="movieControl">
+  <div *ngIf="thrillerLogic">
+    <span (click)="scrollLeftThriller()" class="index__left-button">
+      <i class="fas fa-caret-left"></i>
+    </span>
+  </div>
+
+  <span (click)="scrollRightThriller()" class="index__right-button">
+    <i class="fas fa-caret-right"></i>
+  </span>
+
+  <p class="index__movies-heading">Thriller movies</p>
+  <div class="scrollingIndex index--blur" #thrillerContent>
+    <div class="index__movies" *ngFor="let m of thrillerMovies">
+      <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
+    </div>
+  </div>
+</div>
+
+<hr class="index__rule" />
+
+<div *ngIf="movieControl">
+  <div *ngIf="comedyLogic">
+    <span (click)="scrollLeftComedy()" class="index__left-button">
+      <i class="fas fa-caret-left"></i>
+    </span>
+  </div>
+  <span (click)="scrollRightComedy()" class="index__right-button">
+    <i class="fas fa-caret-right"></i>
+  </span>
+  <p class="index__movies-heading">Comedy movies</p>
+  <div class="scrollingIndex index--blur" #comedyContent>
+    <div class="index__movies" *ngFor="let m of comedyMovies">
+      <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
+    </div>
+  </div>
+</div>
+
+<hr class="index__rule" />
+
+<div *ngIf="movieControl">
+  <div *ngIf="sciFiLogic">
+  <span (click)="scrollLeftSciFi()" class="index__left-button">
+    <i class="fas fa-caret-left"></i>
+  </span>
+</div>
+<span (click)="scrollRightSciFi()" class="index__right-button">
+  <i class="fas fa-caret-right"></i>
+</span>
+  <p class="index__movies-heading">Sci-fi movies</p>
+  <div class="scrollingIndex index--blur" #sciFiContent>
+    <div class="index__movies" *ngFor="let m of sciFiMovies">
+      <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
+    </div>
+  </div>
+</div>

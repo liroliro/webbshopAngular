@@ -1,25 +1,34 @@
 <app-header></app-header>
 
-<div *ngIf="cart.length < 1">
-  <p>Du har inte lagt till några filmer i din varukorg!</p>
+<div class="cart" *ngIf="cart.length < 1">
+  <p class="cart__text">Du har inte lagt till några filmer i din varukorg!</p>
+  <button class="cart__button"><a href="/">Gå till startsidan!</a></button>
 </div>
 
-<div *ngFor="let movie of cart">
-  <p>{{ movie.name }}</p>
-  <img src="{{ movie.imageUrl }}" alt="" />
-  <p>{{ movie.amount }}</p>
-  <div *ngFor="let i of movie.productCategory">
-    <p>{{ i.categoryId }}</p>
-  </div>
+<div class="cart" *ngFor="let movie of cart">
+  <p class="cart__title">{{ movie.name }}</p>
+  <img class="cart__image" src="{{ movie.imageUrl }}" alt="" />
 
-  <button (click)="increaseInCart(movie)">PLUS</button>
-  <button (click)="decreaseInCart(movie)">MINUS</button>
+  <br />
+
+  <div class="cart__amount">
+    <p class="cart__text">Pris: {{ movie.price }}:-</p>
+
+    <button (click)="increaseInCart(movie)">
+      <i class="fas fa-plus"></i>
+    </button>
+    <span class="cart__text">{{ movie.amount }}</span>
+    <button (click)="decreaseInCart(movie)">
+      <i class="fas fa-minus"></i>
+    </button>
+  </div>
+  <br />
 </div>
 
 <div *ngIf="cart.length >= 1">
-  <p>Ditt totala pris: {{ totalPrice }}</p>
-  <button (click)="clearCart()">Töm varukogen!</button>
+  <p style="text-align: center;">Ditt totala pris: {{ totalPrice }}:-</p>
+  <button (click)="clearCart()" class="cart__button">Töm varukogen!</button>
+  <button (click)="goToCheckout()" class="cart__button">
+    Gå till checkout!
+  </button>
 </div>
-
-<br />
-<button (click)="goToCheckout()">Gå till checkout!</button>

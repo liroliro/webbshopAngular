@@ -10,7 +10,13 @@
       </div>
       <br />
       <div class="movie movie__image">
-        <img src="{{ movie.imageUrl }}" (click)="goToProduct(movie)" alt="" />
+        <img
+          id="myImg"
+          [src]="movie.imageUrl"
+          (click)="goToProduct(movie)"
+          alt=""
+          (error)="imageNotFound($event)"
+        />
       </div>
 
       <button class="movie movie__button" (click)="addToCart(movie)">

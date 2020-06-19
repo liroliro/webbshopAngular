@@ -1,34 +1,69 @@
 <app-header></app-header>
 
-<form [formGroup]="customer" (ngSubmit)="save()">
-  <p>
-    <label for="firstname">Förnamn</label>
-    <input type="text" id="firstname" formControlName="firstName" />
-  </p>
-  <p>
-    <label for="lastname">Efternamn</label>
-    <input type="text" id="lastname" formControlName="lastName" />
-  </p>
-
-  <div formGroupName="address">
+<div class="form">
+  <form [formGroup]="customer" (ngSubmit)="save()">
     <p>
-      <label for="street">Gata</label>
-      <input type="text" id="street" formControlName="street" />
+      <label class="form__text" for="firstname">Förnamn</label>
+      <input
+        class="form__input"
+        type="text"
+        id="firstname"
+        formControlName="firstName"
+      />
     </p>
     <p>
-      <label for="zip">Postkod</label>
-      <input type="text" id="zip" formControlName="zip" />
+      <label class="form__text" for="lastname">Efternamn</label>
+      <input
+        class="form__input"
+        type="text"
+        id="lastname"
+        formControlName="lastName"
+      />
     </p>
-    <p>
-      <label for="city">Postort</label>
-      <input type="text" id="city" formControlName="city" />
-    </p>
-  </div>
-  <label for="paymentMethod">Betalningsmetod</label>
-  <input type="text" id="paymentMethod" formControlName="paymentMethod" />
-  <p>Värde: {{ customer.value | json }}</p>
 
-  <p>Validering: {{ customer.valid }}</p>
+    <div formGroupName="address">
+      <p>
+        <label class="form__text" for="street">Gata</label>
+        <input
+          class="form__input"
+          type="text"
+          id="street"
+          formControlName="street"
+        />
+      </p>
+      <p>
+        <label class="form__text" for="zip">Postkod</label>
+        <input class="form__input" type="text" id="zip" formControlName="zip" />
+      </p>
+      <p>
+        <label class="form__text" for="city">Postort</label>
+        <input
+          class="form__input"
+          type="text"
+          id="city"
+          formControlName="city"
+        />
+      </p>
+    </div>
+    <label class="form__text" for="paymentMethod">Betalningsmetod</label>
+    <select
+      class="form__input"
+      type="text"
+      id="paymentMethod"
+      formControlName="paymentMethod"
+    >
+      <option value="MasterCard">MasterCard</option>
+      <option value="Visa">Visa</option>
+    </select>
 
-  <button type="submit" [disabled]="!customer.valid">Spara</button>
-</form>
+    <p class="form__text">Summa: {{ totalPrice }}:-</p>
+    <button
+      class="form__button"
+      type="submit"
+      [disabled]="!customer.valid"
+      onclick="window.location.href='/thankyou'"
+    >
+      Köp
+    </button>
+  </form>
+</div>

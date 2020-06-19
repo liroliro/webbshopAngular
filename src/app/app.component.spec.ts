@@ -1,10 +1,13 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ProductpageComponent } from './components/productpage/productpage.component';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
+  let component = AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
@@ -21,6 +24,6 @@ describe('AppComponent', () => {
   it(`should have as title 'webbshopAngular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('webbshopAngular');
+    expect(app.title).toEqual('flix');
   });
 });

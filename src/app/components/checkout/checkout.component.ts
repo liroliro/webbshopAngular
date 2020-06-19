@@ -15,13 +15,13 @@ export class CheckoutComponent implements OnInit {
   products: Movie[] = [];
 
   customer = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    paymentMethod: [''],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    paymentMethod: ['', Validators.required],
     address: this.fb.group({
-      street: [''],
-      zip: [''],
-      city: [''],
+      street: ['', Validators.required],
+      zip: ['', Validators.required],
+      city: ['', Validators.required],
     }),
   });
   constructor(private fb: FormBuilder, private service: HttpService) {}
@@ -40,12 +40,13 @@ export class CheckoutComponent implements OnInit {
 
   save() {
     const newOrder = new Order();
-    const no = this.customer.value;
-    newOrder.firstName = no.firstName;
-    newOrder.lastName = no.lastName;
-    newOrder.paymentMethod = no.paymentMethod;
+    const valueFromForm = this.customer.value;
+    newOrder.firstName = valueFromForm.firstName;
+    newOrder.lastName = valueFromForm.lastName;
+    newOrder.paymentMethod = valueFromForm.paymentMethod;
     newOrder.totalPrice = this.totalPrice;
     newOrder.products = [];
+
     const products = this.cart.map((m) => {
       return {
         productId: m.id,

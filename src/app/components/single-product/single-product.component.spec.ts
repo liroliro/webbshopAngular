@@ -1,8 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SingleProductComponent } from './single-product.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from 'src/app/services/http.service';
+import { MockHttpService } from 'src/app/services/MockHttpService';
+import { DatePipe } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HeaderComponent } from '../header/header.component';
 
 describe('SingleProductComponent', () => {
   let component: SingleProductComponent;
@@ -10,8 +14,13 @@ describe('SingleProductComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SingleProductComponent],
-      imports: [HttpClientModule, RouterModule.forRoot([])],
+      declarations: [SingleProductComponent, HeaderComponent],
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: [
+        DatePipe,
+        SingleProductComponent,
+        { provide: HttpService, useClass: MockHttpService },
+      ],
     }).compileComponents();
   }));
 
@@ -25,7 +34,14 @@ describe('SingleProductComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should find one movie', () => {
-    expect(component.currentMovie);
+  it('should get movie', () => {
+    expect(component.currentMovie.name).toContain('Return');
+  });
+
+  it('should add one product to the cart', () => {
+    component.cart = [];
+    component.addToCart(component.currentMovie);
+
+    expect(component.cart.length).toEqual(1);
   });
 });

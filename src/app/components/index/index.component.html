@@ -1,45 +1,7 @@
 <div class="index">
   <app-header></app-header>
 
-  <div *ngIf="movieControl">
-    <p class="index__movies-heading">Action movies</p>
-    <div class="scrollingIndex index--blur">
-      <div class="index__movies" *ngFor="let m of actionMovies">
-        <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
-      </div>
-    </div>
-  </div>
+  <app-search></app-search>
 
-  <hr class="index__rule" />
-
-  <div *ngIf="movieControl">
-    <p class="index__movies-heading">Thriller movies</p>
-    <div class="scrollingIndex index--blur">
-      <div class="index__movies" *ngFor="let m of thrillerMovies">
-        <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
-      </div>
-    </div>
-  </div>
-
-  <hr class="index__rule" />
-
-  <div *ngIf="movieControl">
-    <p class="index__movies-heading">Comedy movies</p>
-    <div class="scrollingIndex">
-      <div class="index__movies" *ngFor="let m of comedyMovies">
-        <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
-      </div>
-    </div>
-  </div>
-
-  <hr class="index__rule" />
-
-  <div *ngIf="movieControl">
-    <p class="index__movies-heading">Sci-fi movies</p>
-    <div class="scrollingIndex">
-      <div class="index__movies" *ngFor="let m of sciFiMovies">
-        <img src="{{ m.imageUrl }}" (click)="goToProduct(m)" alt="" />
-      </div>
-    </div>
-  </div>
+  <app-sort-movies></app-sort-movies>
 </div>

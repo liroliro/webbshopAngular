@@ -1,11 +1,19 @@
 <app-header></app-header>
 
 <div *ngIf="gotMovie" class="product">
-  <div class="product__text">
-    <p>{{ currentMovie.name }}</p>
-    <p>{{ currentMovie.description }}</p>
+  <div>
+    <p class="product__title">{{ currentMovie.name }}</p>
+    <br />
+    <p class="product__text">{{ currentMovie.description }}</p>
+    <hr class="product__rule" />
+    <p class="product__text">
+      <span class="product__class">Pris: </span>{{ currentMovie.price }}:-
+    </p>
   </div>
+
   <img class="product__image" src="{{ currentMovie.imageUrl }}" alt="" />
 
-  <button (click)="addToCart(currentMovie)">Lägg till i varukorgen!</button>
+  <button (click)="addToCart(currentMovie)" class="product__button">
+    Lägg till i varukorgen!
+  </button>
 </div>

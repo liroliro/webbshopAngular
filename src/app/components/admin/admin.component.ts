@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
+import { Order } from 'src/app/models/Order';
 
 @Component({
   selector: 'app-admin',
@@ -7,7 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  orders;
+  orders: Order[];
   constructor(private service: HttpService) {}
 
   ngOnInit(): void {
@@ -20,6 +21,15 @@ export class AdminComponent implements OnInit {
 
   removeOrder(id: number) {
     this.service.deleteOrder(id);
-    location.reload();
+
+    let newOrder = this.orders.filter((m: any) => {
+      if (m.id != id) {
+        return m;
+      } else {
+        return;
+      }
+    });
+
+    this.orders = newOrder;
   }
 }

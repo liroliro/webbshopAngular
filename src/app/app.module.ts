@@ -14,6 +14,9 @@ import { SingleProductComponent } from './components/single-product/single-produ
 import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './components/cart/cart.component';
 import { DatePipe } from '@angular/common';
+import { SearchComponent } from './components/search/search.component';
+import { SortMoviesComponent } from './components/sort-movies/sort-movies.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { DatePipe } from '@angular/common';
     NotFoundComponent,
     SingleProductComponent,
     CartComponent,
+    SearchComponent,
+    SortMoviesComponent,
+    ThankYouComponent,
   ],
   imports: [
     BrowserModule,

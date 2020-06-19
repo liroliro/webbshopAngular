@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div *ngFor="let order of orders">
-  <p>{{ order | json }}</p>
-  <button (click)="removeOrder(order.id)">TA BORT</button>
+<div class="admin" *ngFor="let order of orders">
+  <p class="admin__text">{{ order | json }}</p>
+  <button (click)="removeOrder(order.id)" class="admin__button">TA BORT</button>
 </div>

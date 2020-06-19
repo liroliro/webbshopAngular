@@ -1,0 +1,17 @@
+<div class="index__search">
+  <h4 class="index__search-text"><label for="search-box">Search</label></h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <ul class="index__search-list">
+    <li *ngFor="let m of movieSearch | async">
+      <a routerLink="/products/{{ m.id }}" class="index__search-result">
+        {{ m.name }}
+        <img
+          src="{{ m.imageUrl }}"
+          alt="Bild för film"
+          class="index__search-image"
+        />
+      </a>
+    </li>
+  </ul>
+</div>
